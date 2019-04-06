@@ -1,0 +1,23 @@
+html{
+    height: 100vh;
+    width: 100vh;
+}
+body{
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vh;
+}
+.flat-back{
+    color: rgb(23, 23, 23);
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+#app{
+    z-index: 1;
+}
+
+.path {
+  stroke-dasharray: 20;
+}
