@@ -1,0 +1,52 @@
+<div class="container-fluid h-100 content" id="contact">
+        <div class="row align-items-center w-75 h-100 m-auto">
+            <div class="col-12">
+                <h2 class="title-card title-card-l">CONTACT ME.</h2>
+            </div>
+            <div class="col-8 m-auto">
+                <div class="content-1">
+
+                    <form id="contact-me-form" class="frm modern container-fluid" name="contact-me-form" onsubmit="validateForm()">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="inputEmail">*Email address</label>
+                                    <input type="email" class="form-control " id="input-email" aria-describedby="emailHelp" name="email" placeholder="Your email" required>
+                                    <div class="invalid-feedback">Please Enter an Email</div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <label for="message">*Name</label>
+                                    <input type="text" class="form-control" id="input-name" name="name" placeholder="Your Name" required>
+                                    <div class="invalid-feedback">Please enter a name</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="message">*Message</label>
+                                <textarea class="form-control" id="input-message" name="message" rows="3" required></textarea>
+                                <div class="invalid-feedback">Please enter a message</div>
+                            </div>
+                            
+                        </div>
+
+                    </form>
+                    <div class="text-center">
+                        <button class="btn modern" onclick="validateForm()">Submit</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="col-12 text-center">
+                <a href="https://www.linkedin.com/in/philippe-clesca/" target="_blank" class="fab fa-linkedin-in fa-2x pc-link"></a>
+                <a href="https://github.com/Pckool" target="_blank" class="fab fa-github fa-2x pc-link"></a>
+                <a href="mailto:hello@philippec.me" target="_blank" class="fas fa-envelope fa-2x pc-link"></a>
+            </div>
+        </div>
+    </div>
+    <script src="./src/js/pageNav.js" charset="utf-8"></script>
+    <script src="./src/js/contact.js" charset="utf-8"></script>
