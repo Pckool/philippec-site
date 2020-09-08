@@ -1,0 +1,37 @@
+.oi{
+    display: grid;
+    position: absolute;
+    z-index: 50;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: 100%;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.oi div img{
+    height: 100%;
+    width: auto;
+    /* z-index: 1; */
+    pointer-events: none;
+}
+.oi-left{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    z-index: -50;
+    pointer-events: none;
+}
+.oi-center{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    z-index: 50;
+    pointer-events: none;
+    
+}
+.oi-right{
+    grid-column-start: 3;
+    grid-column-end: end;
+    pointer-events: none;
+    z-index: 50;
+}

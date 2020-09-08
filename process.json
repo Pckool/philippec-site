@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "portfolio",
+            "script": "./app.js"
+        }
+    ]
+}
