@@ -1,10 +1,8 @@
 module.exports = {
   apps: [{
+    name: 'portfolio',
     script: 'app.js',
     watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
   }],
 
   deploy: {
@@ -15,7 +13,7 @@ module.exports = {
       repo: 'git@github.com:Pckool/philippec-site.git',
       path: '/web',
       'pre-deploy-local': '',
-      'post-deploy': 'yarn install && pm2 reload ecosystem.config.js --env production',
+      'post-deploy': 'yarn install && pm2 startOrRestart ecosystem.config.js --env production',
       'pre-setup': ''
     }
   }
