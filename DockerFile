@@ -1,4 +1,3 @@
-FROM nginx
 FROM node:12
 
 RUN mkdir /web
