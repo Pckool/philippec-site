@@ -23,6 +23,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: "https://kit.fontawesome.com/17cd5d7c90.js"}
     ]
   },
   /*
@@ -37,6 +40,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/composition-api'
   ],
   /*
   ** Auto import components
@@ -85,5 +89,13 @@ export default {
   server: {
     port: process.env.PORT || 8080,
     host: "0.0.0.0"
+  },
+  loading: {
+    continuous: true,
+    
+  },
+  loadingIndicator: {
+    name: 'pulse',
+    color: '',
   }
 }

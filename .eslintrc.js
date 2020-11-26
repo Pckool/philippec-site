@@ -15,7 +15,7 @@ module.exports = {
     'no-tabs': 'off',
     'no-trailing-spaces': 'off',
     'vue/html-indent': 'off',
-    semi: 'warn',
+    semi: 'off',
     indent: 'off',
     quotes: 'off',
     'space-before-blocks': 'off',
@@ -24,6 +24,9 @@ module.exports = {
     'no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',
     'object-curly-spacing': 'off',
-    'arrow-parens': 'warn'
+    // curly: 'off',
+    'arrow-parens': 'warn',
+    'lines-between-class-members': 'warn',
+    'padded-blocks': 'warn'
   }
 }

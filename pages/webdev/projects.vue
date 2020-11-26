@@ -25,7 +25,7 @@
 import anime from 'animejs'
 
 // components
-import pageNav from '@/assets/js/pageNav'
+import pageNav from '@/assets/scripts/pageNav'
 import ClientCard from '@/components/Client.vue'
 import Scroll from '@/components/Scroll.vue'
 import Heading from '@/components/Heading.vue'

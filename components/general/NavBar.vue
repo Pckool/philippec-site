@@ -1,5 +1,5 @@
 <template>
-<div v-if="mobile" id="mobile-nav">
+<!-- <div v-if="mobile" id="mobile-nav">
     <span id="nav-open-btn" @click="navOpen">
         <i id="nav-open-front" class="fas fa-bars" />
 
@@ -17,56 +17,26 @@
             </div>
         </div>
 
-
         <nav id="nav-bar" class="menu-bar container-fluid fixed-bottom">
             <div class="row menu-row1 justify-content-around">
-                <div class="col-auto menu-item">
-                    <nuxt-link id="nav-contact" :to="{name: 'contact'}" class="menu-link" >
-						contact
-					</nuxt-link>
-                </div>
-                <div class="col-auto menu-item">
-                    <nuxt-link id="nav-skills" :to="{name: 'skills'}" class="menu-link">
-						skills
-					</nuxt-link>
-                </div>
-                <div class="col-auto menu-item ">
-                    <nuxt-link id="nav-projects" :to="{name: 'projects'}" class="menu-link">
-						projects
-					</nuxt-link>
-                </div>
+                
                 <div class="col-auto menu-item">
                     <nuxt-link id="nav-about-me" :to="{name:'about-me'}" class="menu-link" >
-						about me
+						about
 					</nuxt-link>
                 </div>
             </div>
         </nav>
     </div>
-</div>
+</div> -->
 
-<div v-else id="desktop-nav">
+<div id="desktop-nav">
     <div class="background"></div>
     <nav id="nav-bar" class="menu-bar">
         <div class="row menu-row1 justify-content-around">
             <div class="col-auto menu-item">
-                <nuxt-link id="nav-contact" :to="{name: 'contact'}" class="menu-link" >
-					contact
-				</nuxt-link>
-            </div>
-            <div class="col-auto menu-item">
-                <nuxt-link id="nav-skills" :to="{name: 'skills'}" class="menu-link">
-					skills
-				</nuxt-link>
-            </div>
-            <div class="col-auto menu-item ">
-                <nuxt-link id="nav-projects" :to="{name: 'projects'}" class="menu-link">
-					projects
-				</nuxt-link>
-            </div>
-            <div class="col-auto menu-item">
                 <nuxt-link id="nav-about-me" :to="{name:'about-me'}" class="menu-link" >
-					about me
+					about
 				</nuxt-link>
             </div>
         </div>
@@ -76,10 +46,9 @@
     
 </template>
 
-
 <script>
 import anime from 'animejs';
-import main from '@/assets/js/main';
+import main from '@/assets/scripts/main';
     
 export default {
 	data(){
@@ -91,11 +60,12 @@ export default {
 		}
 	},
 	mounted(){
-		if (document.body.clientWidth <= 800) this.$data.mobile = true
+		if (document.body.clientWidth <= 800) { this.mobile = true }
 
 		window.addEventListener('resize', e => {
-			if (document.body.clientWidth <= 800) this.$data.mobile = true
-			else this.$data.mobile = false
+            if (document.body.clientWidth <= 800) { 
+                this.mobile = true 
+            } else { this.mobile = false }
 		})
 
 		// anime({
@@ -124,12 +94,11 @@ export default {
 			console.log('YUP!')
 		},
 		navOpen(){
-			let app = this;
-			if (!this.$data.mobile) return
+			if (!this.$data.mobile) { return }
 
 			anime({
 				targets: '#full-menu',
-				backgroundColor: app.$data.navBColor,
+				backgroundColor: this.$data.navBColor,
 				opacity: ['0', '1'],
 				easing: 'easeOutQuint',
 				top: `0px`,
@@ -140,13 +109,13 @@ export default {
 			anime({
 				targets: "#nav-bar",
 				// bottom: `-${navBarHeight}px`,
-				opacity: ['0','1'],
+				opacity: ['0', '1'],
 				delay: 700,
 				easing: 'easeInOutQuad'
 			});
 		},
 		navClose(){
-			if(!this.mobile) return;
+			if (!this.mobile){ return }
 			anime({
 				targets: '#full-menu',
 				opacity: [1, 0],
@@ -168,7 +137,6 @@ export default {
 	
 }
 </script>
-
 
 <style lang="scss">
 
@@ -229,12 +197,12 @@ export default {
     color: #808080;
     height: 100%;
     width: 100%;
-    font-weight: 600;
+    font-weight: 400;
     transition: 0.3s all;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: default;
+    font-family: 'Butler';
     // font-family: 'Nunito';
     font-weight: 400;
         &:hover {
@@ -275,7 +243,6 @@ export default {
     }
 }
     
-
 #desktop-nav{
     position: fixed;
     top: 0;
@@ -299,10 +266,12 @@ export default {
         z-index: 950;
         padding: 1.5em 2em;
         .menu-link{
+            font-family: 'Butler';
             transition: 0.3s all cubic-bezier(1, 0.06, 0.44, 0.99);
             color: var(--lightGrey);
             padding: 0 1em;
             position: relative;
+            
             // mix-blend-mode: difference;
             &::after{
                 content: "";

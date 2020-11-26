@@ -44,11 +44,10 @@
 
 <script>
 import anime from 'animejs'
-import pageNav from '@/assets/js/pageNav'
+import pageNav from '@/assets/scripts/pageNav'
 
 import Scroll from '@/components/Scroll.vue'
 import Heading from '@/components/Heading.vue'
-import NavBar from '@/components/NavBar.vue'
 import ProgressBar from '@/components/StatusBar.vue'
 
 export default {

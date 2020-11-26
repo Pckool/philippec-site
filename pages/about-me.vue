@@ -29,17 +29,15 @@
 </template>
 <script>
 import anime from 'animejs'
-import pageNav from '@/assets/js/pageNav'
 
 import Scroll from '@/components/Scroll.vue'
 import Heading from '@/components/Heading.vue'
-import NavBar from '@/components/NavBar.vue'
 import ProgressBar from '@/components/StatusBar.vue'
 const $ = require("jquery")
 
 export default {
 	name: 'about-me',
-	components: {Scroll, Heading, NavBar},
+	components: {Scroll, Heading},
     data(){
         return {
             
@@ -50,7 +48,7 @@ export default {
         pageNav.cont1Anim();
         pageNav.titlesAnim();
 
-        const skills_animate = anime({
+        const skillsAnimate = anime({
             targets: '.skills-cont .skill', 
             marginRight: ["7em", "0em"],
             opacity: [ 0, 1],
@@ -71,7 +69,7 @@ export default {
             autoplay: false,
         })
 
-        let onSkills = false;
+        const onSkills = false;
 
         $(document).on('wheel', function(e) {
             const docHeight = $(document).outerHeight()
@@ -88,7 +86,7 @@ export default {
             // console.log((rounded/100) * scrollAnimation.duration);
             scrollAnimation.seek((rounded / 100) * scrollAnimation.duration)
             
-            skills_animate.seek(skills_animate.duration * (rounded / 100))
+            skillsAnimate.seek(skillsAnimate.duration * (rounded / 100))
 
             if (e.deltaY < 0) {
                 console.log('scrolling up')
@@ -112,7 +110,7 @@ export default {
             // console.log((rounded/100) * scrollAnimation.duration);
             scrollAnimation.seek((rounded / 100) * scrollAnimation.duration)
             
-            skills_animate.seek(skills_animate.duration * (rounded / 100))
+            skillsAnimate.seek(skillsAnimate.duration * (rounded / 100))
         })
 	},
 	methods: {

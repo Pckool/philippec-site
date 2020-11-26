@@ -345,6 +345,25 @@ h4{
     }
 }
 
+#threeCanvas{
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    z-index: 10;
+}
+.fullscreen{
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
 /* width */
 ::-webkit-scrollbar {
     transition-duration: 0.2s;

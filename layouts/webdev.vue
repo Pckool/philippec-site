@@ -5,9 +5,9 @@
   </div>
 </template>
 <script>
-import navBar from '@/components/general/NavBar.vue'
+import NavBar from '@/components/webdev/NavBar.vue'
 export default {
-  components: {navBar}
+  components: {NavBar}
 }
 </script>
 <style>

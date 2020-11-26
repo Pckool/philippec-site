@@ -10,7 +10,14 @@
 								<div class="col-md">
 									<div class="form-group">
 										<label for="message">*Name</label>
-										<input id="input-name" v-model="name" type="text" class="form-control" placeholder="Your Name" required>
+										<input 
+										id="input-name" 
+										v-model="name" 
+										type="text" 
+										class="form-control" 
+										placeholder="Your Name" 
+										required
+										>
 										<div class="invalid-feedback">
 											Please enter a name
 										</div>
@@ -64,7 +71,7 @@
 </template>
 <script>
 
-import pageNav from '@/assets/js/pageNav'
+import pageNav from '@/assets/scripts/pageNav'
 
 import Heading from '@/components/Heading.vue'
 import Socials from '@/components/Socials.vue'
