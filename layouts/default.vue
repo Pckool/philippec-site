@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <nav-bar />
+  <div id="main-cont">
+    <!-- <nav-bar /> -->
     <Nuxt />
   </div>
 </template>
@@ -26,7 +26,6 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
 
@@ -64,5 +63,8 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+#main-cont{
+  transition: all 1s cubic-bezier(0.55, 0.04, 0, 0.99);
 }
 </style>

@@ -1,6 +1,4 @@
-FROM node:12
-
-RUN mkdir /web
+FROM node:15
 
 WORKDIR /web
 

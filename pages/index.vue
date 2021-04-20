@@ -1,147 +1,237 @@
 <template>
-    <div class="full-size align-items-center barz">
-        <div id="home" class="container-fluid h-100">
-            <div class="row align-items-center h-100">
-                <div class="container-fluid w-75">
-                        <div class="col-12">
-                            <h1 class="title-card">
-                                <div class="name-sect">
-                                    <span>P</span>
-                                    <span>H</span>
-                                    <span>I</span>
-                                    <span>L</span>
-                                    <span>I</span>
-                                    <span>P</span>
-                                    <span>P</span>
-                                    <span>E</span>
-                                </div>
-
-                                <div class="name-sect">
-                                    <span>C</span>
-                                    <span>L</span>
-                                    <span>E</span>
-                                    <span>S</span>
-                                    <span>C</span>
-                                    <span>A</span>
-                                </div>
-                            </h1>
-                            <small class="sub-title">how may I help you?</small>
-                        </div>
-                        
-                    </div>
-                </div>
-
-            <overlay-choices />
-            <div class="socials-cont">
-                <socials color="white"/>
-            </div>
-        </div>
-    </div>
+	<div class="full-size align-items-center barz">
+		<div id="home" class="">
+			<div class="title-card">
+				<h1 class="name">
+					<span class="first">PHILIPPE</span> <span class="last">CLESCA</span>
+				</h1>
+				<div class="subtitle">
+					<p>
+						Under Construction...
+					</p>
+				</div>
+			</div>
+			<div class="socials-cont">
+				<socials color="white" />
+			</div>
+		</div>
+	</div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import {defineComponent, nextTick, onMounted, ref} from '@nuxtjs/composition-api'
 import anime from 'animejs'
 import pageNav from '@/assets/scripts/pageNav'
 import socials from '~/components/Socials.vue';
 import overlayChoices from '~/components/main/overlayChoice.vue'
-export default Vue.extend({
-    components: {socials, overlayChoices},
-    
-    data(){
-        return {
-            
-        }
-    },
-    mounted(){
-        anime({
-            targets: '#philippe-pic',
-            duration: 1500,
-            easing: 'easeOutQuart',
-            opacity: [0, 1],
-            delay: 1500,
-            paddingLeft: ['100%', '0%'],
-            filter: ["blur(15px)", "blur(0px)"]
-            // complete: showPerc
-        });
-        anime({
-            targets: '.title-card span',
-            duration: 500,
-            opacity: [0, 1],
-            right: [70, 0],
 
-            delay: anime.stagger(50, {start: 1000}),
-            
-            easing: 'easeOutElastic(1, 0.8)'
-        })
-        pageNav.cont1Anim()
-        pageNav.titlesAnim()
-    },
-    methods: {
-        goTo(pageName){
-            this.$router.push({name: pageName});
-        },
-        
-    }
+export default defineComponent({
+	components: {socials, overlayChoices},
+	
+	setup(){
+		const posx = ref<number>()
+		const posy = ref<number>()
+		const mousePosition = (e) => {
+			const posX = e.clientX;
+			const posY = e.clientY;
+			const maxY = document.body.clientHeight;
+			const maxX = document.body.clientWidth;
+			const minY = 0;
+			const minX = 0;
+
+			posx.value = posX;
+			posy.value = posY;
+			const titleCard = document.querySelector<HTMLElement>('.title-card')
+			if (titleCard){
+				titleCard.style.setProperty('--x', `${posX}px`)
+				titleCard.style.setProperty('--xi', `-${posX}px`)
+			}
+		}
+		const hideName = () => {
+			const titleCard = document.querySelector<HTMLElement>('.title-card')
+			const subTitle = document.querySelector<HTMLElement>('.sub-title')
+			if (titleCard){
+				titleCard.classList.add('hidden')
+				subTitle.style.opacity = '0'
+			}
+		}
+		const showName = () => {
+			const titleCard = document.querySelector<HTMLElement>('.title-card')
+			const subTitle = document.querySelector<HTMLElement>('.sub-title')
+			if (titleCard){
+				titleCard.classList.remove('hidden')
+				subTitle.style.opacity = '0'
+			}
+		}
+		onMounted(() => {
+			nextTick(() => {
+				anime.timeline({
+					delay: 1000,
+					// duration: 600,
+					easing: 'easeOutQuad',
+					begin: () => {
+						console.log('lmao')
+					}
+				}).add({
+					targets: '.title-card .first',
+					translateY: ['100%', '0%'],
+					
+				}, 0).add({
+					targets: '.title-card .last',
+					translateY: ['100%', '0%'],
+					
+				}, 200).add({
+					targets: '.title-card .subtitle p',
+					translateY: ['200%', '0%'],
+					
+				}, 600)
+			})
+			
+			// window.onmousemove = mousePosition;
+			pageNav.cont1Anim()
+			pageNav.titlesAnim()
+		})
+		onMounted(() => {
+			nextTick(() => {
+				const color = document.body.style.getPropertyValue('--mainBlack')
+				console.log('lol', color)
+				document.querySelector<HTMLElement>('#main-cont').style.background = `var(--mainBlack)${color}`
+			})
+		})
+		return {
+			mousePosition,
+			posy,
+			posx,
+			hideName,
+			showName
+		}
+	},
 })
 </script>
 
 <style lang="scss">
 #home{
-    background: var(--mainBlack);
-    // background: radial-gradient(circle at var(--x) var(--y), $mainGrey 0%, $mainBlack 100%);
-    color: var(--mainWhite); 
-    .title-card, .sub-title{
-        position: relative;
-        z-index: 2;
-    }
-    .title-card{
-        top: -310px;
-        font-size: 51px;
-        text-transform: lowercase;
-    }
-    .sub-title{
-        bottom: -300px;
-        font-family: 'Butler';
-        font-size: 14px;
-        right: -160px;
-    }
-    .row{
-        pointer-events: none;
-    }
-    .modern-link{
-        pointer-events: all;
-    }
-    
-    .name-sect{
-        display: inline-block;
-    }
-    span{
-        position: relative;
-        letter-spacing: 0px;
-    }
-    .break{
-        color: var(--mainHighlight);
-    }
-    .socials-cont{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        padding: 2em;
-        z-index: 12;
-        .socials{
-            a{
-                color: #4b4b4b;
-                &:hover{
-                    color: var(--mainWhite)
-                }
-            }
-            
-        }
-        
-    }
-    
+	// background: var(--mainBlack);
+	// background: radial-gradient(circle at var(--x) var(--y), $mainGrey 0%, $mainBlack 100%);
+	// background: linear-gradient(45deg, var(--color1), var(--color2));
+	height: 100%;
+	width: 100%;
+	transition: all 1s cubic-bezier(0.55, 0.04, 0, 0.99);
+	color: var(--mainWhite);
+	.title-card{
+		position: fixed;
+		top: 0px;
+		letter-spacing: 5px;
+		overflow: hidden;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		white-space: nowrap;
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		.name{
+			text-transform: uppercase;
+			font-size: 10vw;
+			text-align: justify;
+			overflow: hidden;
+			position: relative;
+			.first, .last {
+				display: inline-block;
+			}
+			margin-bottom: 2rem;
+		}
+		.subtitle{
+			width: 100%;
+			margin-right: 4rem;
+			display: flex;
+			text-align: right;
+			justify-content: flex-end;
+			font-size: 12px;
+			overflow: hidden;
+			p{
+				margin: 0;
+			}
+		}
+		overflow: hidden;
+
+		.name-sect{
+			display: inline-block;
+			font-size: 400px;
+			white-space: nowrap;
+			overflow:visible;
+			transition: all 1s cubic-bezier(0.55, 0.04, 0, 0.99);
+			color: #1f1f1f;
+		}
+		&.hidden{
+			.name-sect{
+				color: white;
+				&:nth-child(2n){
+					// animation: switchSlide 1s cubic-bezier(0.55, 0.04, 0, 0.99);  
+					transform: translateX(-100%);
+				}
+				&:nth-child(2n-1){
+					transform: translateX(100%);
+				}
+			}
+		}
+	}
+	@keyframes switchSlide {
+		0%{
+			
+		}
+		89%{
+			transform: translateX(-100%);
+		}
+		99%{
+			
+		}
+
+	}
+	@keyframes switchSlide_inv {
+		
+	}
+	.sub-title{
+		position: absolute;
+		bottom: calc(50% - 20%);
+		z-index: 3;
+		// font-family: 'Butler';
+		font-family: 'scillaregular';
+		font-size: 14px;
+		right: 50%;
+		transform: translateX(50%);
+
+	}
+	.row{
+		pointer-events: none;
+	}
+	.modern-link{
+		pointer-events: all;
+	}
+	
+	.break{
+		color: var(--mainHighlight);
+	}
+	.socials-cont{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		padding: 2em;
+		z-index: 12;
+		.socials{
+			a{
+				color: var(--lightGrey);
+				&:hover{
+					color: var(--mainWhite)
+				}
+			}
+			
+		}
+		
+	}
+	
 }
 </style>

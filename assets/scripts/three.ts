@@ -1,6 +1,6 @@
 
 import anime from 'animejs'
-import {defineComponent, onMounted, ref, reactive, onBeforeUnmount} from '@vue/composition-api'
+import {defineComponent, onMounted, ref, reactive, onBeforeUnmount} from '@nuxtjs/composition-api'
 import {Scene, PerspectiveCamera, WebGLRenderer, PlaneBufferGeometry, MeshNormalMaterial, Mesh, Clock, Raycaster, MeshBasicMaterial, TextureLoader, MeshLambertMaterial, PlaneGeometry, PointLight, FontLoader, Font, TextGeometry, BufferGeometry, AmbientLight} from 'three'
 import {EffectComposer, RenderPass, Effect, EffectPass} from 'postprocessing'
 import Text2d, {} from './Text2d'
@@ -30,7 +30,7 @@ export class ThreeInstance {
         this.elId = 'threeCanvas-' + this.id;
         this.aspectRatio = window.innerWidth / window.innerHeight;
 
-        this.renderer = reactive<WebGLRenderer>(new WebGLRenderer({antialias: false, alpha: true}));
+        this.renderer = reactive<WebGLRenderer>(new WebGLRenderer({antialias: false, alpha: true, powerPreference: 'high-performance'}));
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setClearColor('#000000', 0.0);
@@ -51,7 +51,6 @@ export class ThreeInstance {
         );
         this.camera.position.z = 50;
         
-
         this.scene = new Scene();
         this.clock = new Clock()
 
@@ -61,7 +60,7 @@ export class ThreeInstance {
         
         const ctx = (<HTMLCanvasElement>document.body.querySelector(`#${this.elId}`)).getContext("2d")
         ctx?.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        const precForm = this.renderer.context.getShaderPrecisionFormat(this.renderer.context.VERTEX_SHADER, this.renderer.context.MEDIUM_FLOAT)
+        const precForm = this.renderer.getContext().getShaderPrecisionFormat(this.renderer.getContext().VERTEX_SHADER, this.renderer.getContext().MEDIUM_FLOAT)
 
         window.addEventListener('resize', () => {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -139,12 +138,7 @@ export class ThreeInstance {
     }
 
     async setBackground(img: string){
-        await anime({
-            targets: this.background.material,
-            opacity: [1, 0],
-            duration: 300,
-            easing: 'easeInOutQuad'
-        }).finished;
+        await this.hideBackground();
 
         const loader = new TextureLoader();
         const material = new MeshLambertMaterial({
@@ -157,6 +151,15 @@ export class ThreeInstance {
         await anime({
             targets: this.background.material,
             opacity: [0, 1],
+            duration: 300,
+            easing: 'easeInOutQuad'
+        }).finished;
+    }
+
+    async hideBackground(){
+        await anime({
+            targets: this.background.material,
+            opacity: [1, 0],
             duration: 300,
             easing: 'easeInOutQuad'
         }).finished;

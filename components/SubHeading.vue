@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import Rellax from 'rellax';
+// import Rellax from 'rellax';
 export default {
     props: {
         title: {
@@ -18,7 +18,7 @@ export default {
         }
     },
     mounted(){
-        var rellax = new Rellax('.rellax');
+        // var rellax = new Rellax('.rellax');
     }
 }
 </script>

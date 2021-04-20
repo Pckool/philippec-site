@@ -4,12 +4,20 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
+  ssr: true,
   target: 'server',
+  telemetry: true,
+  components: [
+		'~/components',
+		'~/components/photography',
+		'~/components/webdev',
+		'~/components/main',
+		'~/components/general',
+	],
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -33,24 +41,22 @@ export default {
   */
   css: [
     '@/assets/styles/main.scss',
-    '@/assets/styles/overlayimage.scss'
+    '@/assets/styles/overlayimage.scss',
+    '~/static/fonts/Scilla-webfont/stylesheet.css',
+    '~/static/fonts/Archia-Regular/stylesheet.css'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/composition-api'
+    
   ],
-  /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
-  components: true,
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/composition-api',
     '@nuxt/typescript-build'
   ],
   /*
@@ -84,7 +90,7 @@ export default {
   build: {
   },
   serverMiddleware: [
-    '@/api/contact'
+    '~/api/contact'
   ],
   server: {
     port: process.env.PORT || 8080,

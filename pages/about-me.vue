@@ -33,6 +33,7 @@ import anime from 'animejs'
 import Scroll from '@/components/Scroll.vue'
 import Heading from '@/components/Heading.vue'
 import ProgressBar from '@/components/StatusBar.vue'
+import pageNav from '~/assets/scripts/pageNav'
 const $ = require("jquery")
 
 export default {
@@ -47,7 +48,7 @@ export default {
     mounted(){
         pageNav.cont1Anim();
         pageNav.titlesAnim();
-
+        document.querySelector('#main-cont').style.background = `var(--mainWhite)`;
         const skillsAnimate = anime({
             targets: '.skills-cont .skill', 
             marginRight: ["7em", "0em"],
