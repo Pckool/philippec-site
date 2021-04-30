@@ -2,12 +2,18 @@
   <div id="main-cont">
     <!-- <nav-bar /> -->
     <Nuxt />
+    <!-- Calendly badge widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/philippec', text: 'Schedule time with me', color: '#00a2ff', textColor: '#ffffff', branding: true }); }</script>
+    <!-- Calendly badge widget end -->
   </div>
+  
 </template>
 <script>
-import navBar from '@/components/general/NavBar.vue'
+// import navBar from '@/components/general/NavBar.vue'
 export default {
-  components: {navBar}
+  components: {}
 }
 </script>
 <style>
